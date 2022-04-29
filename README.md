@@ -72,5 +72,3 @@ has_one:shipping_address
 |area               |string |null: false|                 |電話番号
 ### Association
 has_one:purchase_record
-
-
