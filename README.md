@@ -24,7 +24,6 @@ has_many:purchase_records
 ・itemsテーブル
 |Column             |Type   |Options    |                 |
 |-------------------|-------|-----------|-----------------|
-|image              |active_storage|    |                 |画像 
 |product            |string |null: false|                 |商品名
 |product_description|text   |null: false|                 |商品説明
 |category_id        |integer|null: false|collection_select|active_hashカテゴリー
@@ -33,7 +32,7 @@ has_many:purchase_records
 |area_id            |integer|null: false|collection_select|active_hash発送元の地域 都道府県
 |number_of_days_id  |integer|null: false|collection_select|active_hash発送までの日数
 |price              |integer|null: false|                 |価格
-|user_id            |references   |foreign_key: true|     |外部キーuser 出品者のid
+|user               |references|null: false|foreign_key: true|外部キーuser 出品者のid
 ### Association
 belongs_to:user
 has_one:purchase_record (子テーブル)
@@ -47,12 +46,12 @@ has_one:purchase_record (子テーブル)
 ・purchase_recordsテーブル
 |Column             |Type   |Options    |                 |
 |-------------------|-------|-----------|-----------------|
-|user_id            |references   |foreign_key: true|     |外部キーuser 購入者のid
-|item_id            |references   |foreign_key: true|     |外部キーitem 商品情報のid
+|user               |references|null: false|foreign_key: true|外部キーuser 購入者のid
+|item               |references|null: false|foreign_key: true|外部キーitem 商品情報のid
 ### Association
 belongs_to:user
 belongs_to:item (親テーブル)
-has_one:shipping_address (子テーブル)
+has_one:shipping_addresses (子テーブル)
 
 
 
@@ -61,7 +60,7 @@ has_one:shipping_address (子テーブル)
 
 「発送先情報」
 ## Tabel名
-・shipping_addressテーブル
+・shipping_addressesテーブル
 |Column             |Type   |Options    |                 |
 |-------------------|-------|-----------|-----------------|
 |postal_code        |string |null: false|                 |郵便番号
@@ -70,7 +69,7 @@ has_one:shipping_address (子テーブル)
 |block_number       |string |null: false|                 |番地
 |building           |string |           |                 |建物名（任意）
 |telephone_number   |string |null: false|                 |電話番号
-|purchase_records_id|references   |foreign_key: true|     |外部キーpurchase_records 購入記録のid
+|purchase_record    |references|null: false|foreign_key: true|外部キーpurchase_records 購入記録のid
 
 ### Association
 belongs_to:purchase_record (親テーブル)
