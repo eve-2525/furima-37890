@@ -51,7 +51,7 @@ has_one:purchase_record (子テーブル)
 ### Association
 belongs_to:user
 belongs_to:item (親テーブル)
-has_one:shipping_addresses (子テーブル)
+has_one:shipping_address (子テーブル)
 
 
 

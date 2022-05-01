@@ -282,8 +282,8 @@
                 <mxCell id="135" value="&lt;div style=&quot;color: rgb(212 , 212 , 212) ; background-color: rgb(30 , 30 , 30) ; font-family: &amp;#34;menlo&amp;#34; , &amp;#34;monaco&amp;#34; , &amp;#34;courier new&amp;#34; , monospace ; font-size: 12px ; line-height: 18px&quot;&gt;&lt;div style=&quot;font-family: &amp;#34;menlo&amp;#34; , &amp;#34;monaco&amp;#34; , &amp;#34;courier new&amp;#34; , monospace ; line-height: 18px&quot;&gt;telephone_number&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
                     <mxGeometry x="485" y="760" width="130" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="137" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・itemsテーブル親&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
-                    <mxGeometry x="315" y="465" width="170" height="30" as="geometry"/>
+                <mxCell id="137" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・itemテーブル親&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="465" width="160" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="138" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・purchase_recordsテーブル子&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
                     <mxGeometry x="230" y="485" width="280" height="30" as="geometry"/>
@@ -293,20 +293,20 @@
                         <mxPoint x="460" y="780" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="142" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・purchase_recordsテーブル親&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
-                    <mxGeometry x="220" y="705" width="280" height="30" as="geometry"/>
+                <mxCell id="142" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・purchase_recordテーブル親&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
+                    <mxGeometry x="225" y="705" width="270" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="143" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・shipping_addressesテーブル子&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
                     <mxGeometry x="160" y="735" width="300" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="144" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・usersテーブル(1)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
-                    <mxGeometry x="235" y="185" width="170" height="30" as="geometry"/>
+                <mxCell id="144" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・userテーブル(1)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
+                    <mxGeometry x="240" y="185" width="160" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="145" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・itemsテーブル(多)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
                     <mxGeometry x="220" y="235" width="180" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="146" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・usersテーブル(1)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
-                    <mxGeometry x="-25" y="425" width="170" height="30" as="geometry"/>
+                <mxCell id="146" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・userテーブル(1)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
+                    <mxGeometry x="-20" y="425" width="160" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="147" value="&lt;span style=&quot;font-weight: 700 ; text-align: left&quot;&gt;・purchase_recordsテーブル(多)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
                     <mxGeometry x="-145" y="455" width="290" height="30" as="geometry"/>
