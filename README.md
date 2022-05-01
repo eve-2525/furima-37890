@@ -4,15 +4,14 @@
 ・usersテーブル
 |Column            |Type   |Options    |
 |------------------|-------|-----------|
-|nickname          |string |null: false|
-|email             |string |null: false|
-|password          |string |null: false|
-|encrypted_password|string |null: false|
-|last_name         |string |null: false|
-|first_name        |string |null: false|
-|last_name_kana    |string |null: false|
-|first_name_kana   |string |null: false|
-|birthday          |integer|null: false|collection_select|
+|nickname          |string |null: false|ニックネーム
+|email             |string |null: false|unique: true メールアドレス
+|encrypted_password|string |null: false|パスワード
+|last_name         |string |null: false|名字
+|first_name        |string |null: false|名前
+|last_name_kana    |string |null: false|名字カナ
+|first_name_kana   |string |null: false|名前カナ
+|birthday          |date   |null: false|collection_select|生年月日
 ### Association
 has_many:items
 has_many:purchase_records
@@ -25,19 +24,18 @@ has_many:purchase_records
 ・itemsテーブル
 |Column             |Type   |Options    |                 |
 |-------------------|-------|-----------|-----------------|
-|image              |active_storage|    |                 |画像 
 |product            |string |null: false|                 |商品名
 |product_description|text   |null: false|                 |商品説明
-|category           |string |null: false|collection_select|カテゴリー
-|condition          |string |null: false|collection_select|商品の状態
-|postage            |string |null: false|collection_select|配送料の負担
-|area               |string |null: false|collection_select|発送元の地域
-|number_of_days     |string |null: false|collection_select|発送までの日数
+|category_id        |integer|null: false|collection_select|active_hashカテゴリー
+|condition_id       |integer|null: false|collection_select|active_hash商品の状態
+|postage_id         |integer|null: false|collection_select|active_hash配送料の負担
+|area_id            |integer|null: false|collection_select|active_hash発送元の地域 都道府県
+|number_of_days_id  |integer|null: false|collection_select|active_hash発送までの日数
 |price              |integer|null: false|                 |価格
-|user               |references   |foreign_key: true|     |外部キーuser 出品者のid
+|user               |references|null: false|foreign_key: true|外部キーuser 出品者のid
 ### Association
 belongs_to:user
-has_one:purchase_record
+has_one:purchase_record (子テーブル)
 
 
 
@@ -48,11 +46,12 @@ has_one:purchase_record
 ・purchase_recordsテーブル
 |Column             |Type   |Options    |                 |
 |-------------------|-------|-----------|-----------------|
-|user               |references   |foreign_key: true|     |外部キーuser 購入者のid
+|user               |references|null: false|foreign_key: true|外部キーuser 購入者のid
+|item               |references|null: false|foreign_key: true|外部キーitem 商品情報のid
 ### Association
 belongs_to:user
-has_one:item
-has_one:shipping_address
+belongs_to:item (親テーブル)
+has_one:shipping_address (子テーブル)
 
 
 
@@ -61,16 +60,16 @@ has_one:shipping_address
 
 「発送先情報」
 ## Tabel名
-・shipping_addressテーブル
+・shipping_addressesテーブル
 |Column             |Type   |Options    |                 |
 |-------------------|-------|-----------|-----------------|
-|product            |string |null: false|                 |郵便番号
-|product_description|string |null: false|collection_select|都道府県
-|category           |string |null: false|                 |市区町村
-|condition          |string |null: false|                 |番地
-|postage            |string |           |                 |建物名（任意）
-|area               |string |null: false|                 |電話番号
+|postal_code        |string |null: false|                 |郵便番号
+|area_id            |integer|null: false|collection_select|active_hash受け取り先の地域 都道府県
+|city               |string |null: false|                 |市区町村
+|block_number       |string |null: false|                 |番地
+|building           |string |           |                 |建物名（任意）
+|telephone_number   |string |null: false|                 |電話番号
+|purchase_record    |references|null: false|foreign_key: true|外部キーpurchase_records 購入記録のid
+
 ### Association
-has_one:purchase_record
-
-
+belongs_to:purchase_record (親テーブル)
