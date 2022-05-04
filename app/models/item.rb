@@ -5,12 +5,14 @@ class Item < ApplicationRecord
 
   validates :product, presence: true
   validates :product_description, presence: true
-  validates :category_id, presence: true
-  validates :condition_id, presence: true
-  validates :postage_id, presence: true
-  validates :area_id, presence: true
-  validates :number_of_days_id, presence: true
+  validates :category_id, numericality: { other_than: 1 } 
+  validates :condition_id, numericality: { other_than: 1 } 
+  validates :postage_id, numericality: { other_than: 1 } 
+  validates :area_id, numericality: { other_than: 1 } 
+  validates :number_of_days_id, numericality: { other_than: 1 } 
   validates :price, presence: true
+
+  validates :genre_id, numericality: { other_than: 1 } 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
