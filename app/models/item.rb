@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   validates :area_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :number_of_days_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :price, presence: true
+  validates :image, presence: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
