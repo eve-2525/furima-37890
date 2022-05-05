@@ -13,6 +13,11 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :image, presence: true
 
+  with_options presence: true,
+  format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' } do
+validates :price
+end
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
