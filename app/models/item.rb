@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to:user
 
+  validates :image, presence: true
   validates :product, presence: true
   validates :product_description, presence: true
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
@@ -10,13 +11,10 @@ class Item < ApplicationRecord
   validates :postage_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :area_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :number_of_days_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price, presence: true
-  validates :image, presence: true
 
-  with_options presence: true,
-  format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' } do
-validates :price
-end
+
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
+  format: { with: /\A[0-9]+\z/ }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
