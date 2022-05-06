@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
     # @items = Item.order("created_at DESC")
   end
 
-
   def new
     @item = Item.new
   end
@@ -22,8 +21,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:product,:product_description,:category_id,:condition_id,:postage_id,:area_id,:number_of_days_id,:price,:image).merge(user_id: current_user.id)
-
+    params.require(:item).permit(:product, :product_description, :category_id, :condition_id, :postage_id, :area_id, :number_of_days_id,
+                                 :price, :image).merge(user_id: current_user.id)
   end
-
 end
