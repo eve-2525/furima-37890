@@ -96,6 +96,36 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
+
+      it 'category_id カテゴリーに「---」が選択されている場合は出品できない' do
+        @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+
+      it 'condition_id 商品の状態に「---」が選択されている場合は出品できない' do
+        @item.condition_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
+      end
+
+      it 'postage_id 配送料の負担に「---」が選択されている場合は出品できない' do
+        @item.postage_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Postage can't be blank")
+      end
+
+      it 'area_id 発送元の地域に「---」が選択されている場合は出品できない' do
+        @item.area_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Area can't be blank")
+      end
+
+      it 'number_of_days_id 発送までの日数に「---」が選択されている場合は出品できない' do
+        @item.number_of_days_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Number of days can't be blank")
+      end
     end
   end
 end

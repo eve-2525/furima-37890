@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :number_of_days_id, numericality: { other_than: 1, message: "can't be blank" }
 
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
-                    format: { with: /\A[0-9]+\z/ }
+                    format: { with: /[0-9]+/ }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
