@@ -20,15 +20,14 @@ class ItemsController < ApplicationController
   end
 
   def update
-
     @item = Item.find(params[:id])
 
     if @item.update(item_params)
       redirect_to item_path(@item.id)
-  
-      else
+
+    else
       render :edit
-      end
+    end
   end
 
   def create
@@ -52,11 +51,11 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if  user_signed_in? && current_user.id == @item.user_id
+    if user_signed_in? && current_user.id == @item.user_id
     elsif user_signed_in? && current_user.id != @item.user_id
       redirect_to action: :index
-    else redirect_to action: :new
+    else
+      redirect_to action: :new
     end
   end
-
 end
