@@ -8,7 +8,6 @@ class Order
   validates :area_id, presence: true
   validates :city, presence: true
   validates :block_number, presence: true
-  validates :telephone_number, presence: true
   validates :purchase_record_id, presence: true
 
 
