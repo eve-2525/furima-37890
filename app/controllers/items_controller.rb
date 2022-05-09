@@ -15,6 +15,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    unless @item.purchase_record.blank?
+      redirect_to action: :index
+    else
+      render :edit
+    end
   end
 
   def destroy
