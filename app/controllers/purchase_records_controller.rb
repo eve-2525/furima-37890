@@ -5,17 +5,23 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def create
-    binding.pry
-    # @donation = Donation.create(donation_params)
-    # Address.create(address_params)
-    # redirect_to root_path
+    @order = Order.new(address_params)
+    @item = Item.find(params[:item_id])
+    if 
+      @order.valid?
+      @order.save
+      redirect_to root_path
+    else
+      render :index
+    end
+
   end
 
 
   private
 
   def address_params
-    params.permit(:postal_code, :area_id, :city, :block_number, :building, :telephone_number, :item_id).merge(purchase_record_id: purchase_record.id)
+    params.require(:order).permit(:postal_code, :area_id, :city, :block_number, :building, :telephone_number).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
 end

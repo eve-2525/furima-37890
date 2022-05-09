@@ -8,7 +8,7 @@ class Order
   validates :area_id, presence: true
   validates :city, presence: true
   validates :block_number, presence: true
-  validates :purchase_record_id, presence: true
+  # validates :purchase_record_id, presence: true
 
 
 
@@ -24,8 +24,8 @@ end
 
 def save
 
-    purchase_records = PurchaseRecords.create(item_id: item_id, user_id: user_id)
+    purchase_record = PurchaseRecord.create(item_id: item_id, user_id: user_id)
 
-    ShippingAddresses.create(postal_code: postal_code, area_id: area_id, city: city, block_number: block_number, building: building, telephone_number: telephone_number, purchase_record: purchase_record)
+    ShippingAddress.create(postal_code: postal_code, area_id: area_id, city: city, block_number: block_number, building: building, telephone_number: telephone_number)
   end
 end
