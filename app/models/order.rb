@@ -26,6 +26,6 @@ def save
 
     purchase_record = PurchaseRecord.create(item_id: item_id, user_id: user_id)
 
-    ShippingAddress.create(postal_code: postal_code, area_id: area_id, city: city, block_number: block_number, building: building, telephone_number: telephone_number)
+    ShippingAddress.create(postal_code: postal_code, area_id: area_id, city: city, block_number: block_number, building: building, telephone_number: telephone_number ,purchase_record_id: purchase_record.id)
   end
 end
