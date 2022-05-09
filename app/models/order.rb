@@ -18,7 +18,7 @@ validates :postal_code
 end
 
   with_options presence: true,
-               format: { with: /0\d{10,11}/, message: 'is invalid. Input full-width characters' } do
+               format: { with: /0\d{9,10}/, message: 'is invalid. Input full-width characters' } do
     validates :telephone_number
   end
 
