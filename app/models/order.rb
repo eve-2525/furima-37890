@@ -13,12 +13,12 @@ class Order
 
 
   with_options presence: true,
-  format: { with: /[0-9]{3}-[0-9]{4}/, message: 'is invalid. Input full-width characters' } do
+  format: { with: /[0-9]{3}-[0-9]{4}/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' } do
 validates :postal_code
 end
 
   with_options presence: true,
-               format: { with: /0\d{9,10}/, message: 'is invalid. Input full-width characters' } do
+               format: { with: /0\d{9,10}/, message: 'is invalid. Input only number' } do
     validates :telephone_number
   end
 
