@@ -1,6 +1,6 @@
 class Order
   include ActiveModel::Model
-  attr_accessor :user_id,:item_id,:postal_code,:area_id,:city,:block_number,:building,:telephone_number,:purchase_record
+  attr_accessor :user_id,:item_id,:postal_code,:area_id,:city,:block_number,:building,:telephone_number,:purchase_record,:token
 
 
   with_options presence: true,
@@ -13,7 +13,7 @@ end
   validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :city, presence: true
   validates :block_number, presence: true
-  # validates :purchase_record_id, presence: true
+  validates :token, presence: true
 
 
 
