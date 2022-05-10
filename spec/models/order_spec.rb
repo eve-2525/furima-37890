@@ -6,7 +6,7 @@ RSpec.describe Order, type: :model do
   end
 
   context '内容に問題ない場合' do
-    it "postal_code、area_id、city、block_number、telephone_number、purchase_record、token、item_id、user_idが存在すれば登録できること" do
+    it 'postal_code、area_id、city、block_number、telephone_number、purchase_record、token、item_id、user_idが存在すれば登録できること' do
       expect(@order).to be_valid
     end
 
@@ -17,7 +17,7 @@ RSpec.describe Order, type: :model do
   end
 
   context '内容に問題がある場合' do
-    it "tokenが空では登録できないこと" do
+    it 'tokenが空では登録できないこと' do
       @order.token = nil
       @order.valid?
       expect(@order.errors.full_messages).to include("Token can't be blank")
@@ -36,7 +36,7 @@ RSpec.describe Order, type: :model do
     end
 
     it 'area_idを選択していないと保存できないこと' do
-      @order.area_id = "1"
+      @order.area_id = '1'
       @order.valid?
       expect(@order.errors.full_messages).to include("Area can't be blank")
     end
@@ -58,9 +58,9 @@ RSpec.describe Order, type: :model do
       @order.valid?
       expect(@order.errors.full_messages).to include("Purchase record can't be blank")
     end
-    
+
     it 'itemが紐付いていないと保存できないこと' do
-      @order.item_id =  nil
+      @order.item_id = nil
       @order.valid?
       expect(@order.errors.full_messages).to include("Item can't be blank")
     end

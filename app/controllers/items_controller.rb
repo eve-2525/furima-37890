@@ -15,10 +15,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless @item.purchase_record.blank?
-      redirect_to action: :index
-    else
+    if @item.purchase_record.blank?
       render :edit
+    else
+      redirect_to action: :index
     end
   end
 
