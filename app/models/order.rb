@@ -14,7 +14,6 @@ class Order
   validates :city, presence: true
   validates :block_number, presence: true
   validates :token, presence: true
-  validates :purchase_record, presence: true
 
   with_options presence: true,
                format: { with: /0\d{9,10}/, message: 'is invalid. Input only number' } do

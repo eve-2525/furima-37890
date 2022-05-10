@@ -53,12 +53,6 @@ RSpec.describe Order, type: :model do
       expect(@order.errors.full_messages).to include("Block number can't be blank")
     end
 
-    it 'purchase_recordが空だと保存できないこと' do
-      @order.purchase_record = ''
-      @order.valid?
-      expect(@order.errors.full_messages).to include("Purchase record can't be blank")
-    end
-
     it 'itemが紐付いていないと保存できないこと' do
       @order.item_id = nil
       @order.valid?

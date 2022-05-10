@@ -1,5 +1,6 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :new, :destroy, :index]
+  before_action :move_to_index, only: [:index]
 
   def index
     @order = Order.new
@@ -34,4 +35,11 @@ class PurchaseRecordsController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    redirect_to items_path unless @item.purchase_record.blank?
+  end
+
+
 end
