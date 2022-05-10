@@ -14,6 +14,7 @@ end
   validates :city, presence: true
   validates :block_number, presence: true
   validates :token, presence: true
+  validates :purchase_record, presence: true
 
 
 

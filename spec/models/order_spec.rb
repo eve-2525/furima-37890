@@ -2,35 +2,21 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   before do
-    user = FactoryBot.create(:user)
-    @order = FactoryBot.build(:order, user_id: user.id)
+    @order = FactoryBot.build(:order)
   end
 
   context '内容に問題ない場合' do
-    it "priceとtokenがあれば保存ができること" do
+    it "postal_code、area_id、city、block_number、telephone_number、purchase_record、token、item_id、user_idが存在すれば登録できること" do
       expect(@order).to be_valid
     end
-    it 'cityは空でも保存できること' do
-      @donation_address.city = ''
-      expect(@donation_address).to be_valid
-    end
-    it 'house_numberは空でも保存できること' do
-      @donation_address.house_number = ''
-      expect(@donation_address).to be_valid
-    end
-    it 'building_nameは空でも保存できること' do
-      @donation_address.building_name = ''
-      expect(@donation_address).to be_valid
+
+    it 'buildingは空でも保存できること' do
+      @order.building = ''
+      expect(@order).to be_valid
     end
   end
 
   context '内容に問題がある場合' do
-    it "priceが空では保存ができないこと" do
-      @order.price = nil
-      @order.valid?
-      expect(@order.errors.full_messages).to include("Price can't be blank")
-    end
-
     it "tokenが空では登録できないこと" do
       @order.token = nil
       @order.valid?
@@ -38,45 +24,63 @@ RSpec.describe Order, type: :model do
     end
 
     it 'postal_codeが空だと保存できないこと' do
-      @donation_address.postal_code = ''
-      @donation_address.valid?
-      expect(@donation_address.errors.full_messages).to include("Postal code can't be blank")
+      @order.postal_code = ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Postal code can't be blank")
     end
+
     it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
-      @donation_address.postal_code = '1234567'
-      @donation_address.valid?
-      expect(@donation_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+      @order.postal_code = '1234567'
+      @order.valid?
+      expect(@order.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
     end
-    it 'prefectureを選択していないと保存できないこと' do
-      @donation_address.prefecture = 0
-      @donation_address.valid?
-      expect(@donation_address.errors.full_messages).to include("Prefecture can't be blank")
+
+    it 'area_idを選択していないと保存できないこと' do
+      @order.area_id = "1"
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Area can't be blank")
     end
-    it 'priceが空だと保存できないこと' do
-      @donation_address.price = nil
-      @donation_address.valid?
-      expect(@donation_address.errors.full_messages).to include("Price can't be blank")
+
+    it 'cityが空だと保存できないこと' do
+      @order.city = ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include("City can't be blank")
     end
-    it 'priceが全角数字だと保存できないこと' do
-      @donation_address.price = '２０００'
-      @donation_address.valid?
-      expect(@donation_address.errors.full_messages).to include('Price is invalid')
+
+    it 'block_numberが空だと保存できないこと' do
+      @order.block_number = ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Block number can't be blank")
     end
-    it 'priceが1円未満では保存できないこと' do
-      @donation_address.price = 0
-      @donation_address.valid?
-      expect(@donation_address.errors.full_messages).to include('Price is invalid')
+
+    it 'purchase_recordが空だと保存できないこと' do
+      @order.purchase_record = ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Purchase record can't be blank")
     end
-    it 'priceが1,000,000円を超過すると保存できないこと' do
-      @donation_address.price = 1000001
-      @donation_address.valid?
-      expect(@donation_address.errors.full_messages).to include('Price is invalid')
+    
+    it 'itemが紐付いていないと保存できないこと' do
+      @order.item_id =  nil
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Item can't be blank")
     end
+
     it 'userが紐付いていないと保存できないこと' do
-      @donation_address.user_id = nil
-      @donation_address.valid?
-      expect(@donation_address.errors.full_messages).to include("User can't be blank")
+      @order.user_id = nil
+      @order.valid?
+      expect(@order.errors.full_messages).to include("User can't be blank")
+    end
+
+    it 'telephone_numberが空だと保存できないこと' do
+      @order.telephone_number = ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Telephone number can't be blank")
+    end
+
+    it 'telephone_numberが半角の0から始まり10桁または11桁でないと保存できないこと' do
+      @order.telephone_number = '123456789101'
+      @order.valid?
+      expect(@order.errors.full_messages).to include('Telephone number is invalid. Input only number')
     end
   end
-end
 end
