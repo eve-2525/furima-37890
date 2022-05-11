@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   before do
-    @order = FactoryBot.build(:order)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:order, user_id: user.id, item_id: item.id)
   end
 
   context '内容に問題ない場合' do
@@ -71,8 +73,32 @@ RSpec.describe Order, type: :model do
       expect(@order.errors.full_messages).to include("Telephone number can't be blank")
     end
 
-    it 'telephone_numberが半角の0から始まり10桁または11桁でないと保存できないこと' do
-      @order.telephone_number = '123456789101'
+    it 'telephone_numberが半角10桁または11桁でないと保存できないこと' do
+      @order.telephone_number = '12345678'
+      @order.valid?
+      expect(@order.errors.full_messages).to include('Telephone number is invalid. Input only number')
+    end
+
+    it 'telephone_numberが半角9桁以下では保存できないこと' do
+      @order.telephone_number = '123456789'
+      @order.valid?
+      expect(@order.errors.full_messages).to include('Telephone number is invalid. Input only number')
+    end
+
+    it 'telephone_numberが半角12桁以上では保存できないこと' do
+      @order.telephone_number = '1234567891011'
+      @order.valid?
+      expect(@order.errors.full_messages).to include('Telephone number is invalid. Input only number')
+    end
+
+    it 'telephone_numberが全角では保存できないこと' do
+      @order.telephone_number = '１２３４５６７８９１０'
+      @order.valid?
+      expect(@order.errors.full_messages).to include('Telephone number is invalid. Input only number')
+    end
+
+    it 'telephone_numberが半角数字以外が含まれている場合は保存できないこと' do
+      @order.telephone_number = 'abc'
       @order.valid?
       expect(@order.errors.full_messages).to include('Telephone number is invalid. Input only number')
     end

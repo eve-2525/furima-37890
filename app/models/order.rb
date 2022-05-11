@@ -4,7 +4,7 @@ class Order
                 :token
 
   with_options presence: true,
-               format: { with: /[0-9]{3}-[0-9]{4}/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' } do
+               format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' } do
     validates :postal_code
   end
 
@@ -16,7 +16,7 @@ class Order
   validates :token, presence: true
 
   with_options presence: true,
-               format: { with: /0\d{9,10}/, message: 'is invalid. Input only number' } do
+               format: { with: /\A\d{10,11}\z/, message: 'is invalid. Input only number' } do
     validates :telephone_number
   end
 

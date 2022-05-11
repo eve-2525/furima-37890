@@ -1,15 +1,14 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :new, :destroy, :index]
   before_action :move_to_index, only: [:index]
+  before_action :set_item, only: [:index, :create]
 
   def index
     @order = Order.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
     @order = Order.new(address_params)
-    @item = Item.find(params[:item_id])
     if @order.valid?
       pay_item
       @order.save
@@ -41,5 +40,7 @@ class PurchaseRecordsController < ApplicationController
     redirect_to items_path unless @item.purchase_record.blank?
   end
 
-
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 end
