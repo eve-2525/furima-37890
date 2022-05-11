@@ -1,7 +1,8 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :new, :destroy, :index]
+  before_action :set_item, only: [:index, :create, :move_to_index, :move_to_index2]
   before_action :move_to_index, only: [:index]
-  before_action :set_item, only: [:index, :create]
+  before_action :move_to_index2, only: [:index]
 
   def index
     @order = Order.new
@@ -35,12 +36,15 @@ class PurchaseRecordsController < ApplicationController
     )
   end
 
-  def move_to_index
+  def set_item
     @item = Item.find(params[:item_id])
-    redirect_to items_path if @item.purchase_record.blank?
   end
-end
 
-def set_item
-  @item = Item.find(params[:item_id])
+  def move_to_index
+    redirect_to items_path if @item.purchase_record.present?
+  end
+
+  def move_to_index2
+    redirect_to items_path if current_user.id == @item.user_id
+  end
 end
