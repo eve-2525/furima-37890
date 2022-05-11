@@ -7,6 +7,5 @@ FactoryBot.define do
     block_number { '1-1' }
     building { '東京ハイツ' }
     telephone_number { '05055555555' }
-    purchase_record  { 3 }
   end
 end
