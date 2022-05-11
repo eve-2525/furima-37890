@@ -37,10 +37,10 @@ class PurchaseRecordsController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:item_id])
-    redirect_to items_path unless @item.purchase_record.blank?
+    redirect_to items_path if @item.purchase_record.blank?
   end
+end
 
-  def set_item
-    @item = Item.find(params[:item_id])
-  end
+def set_item
+  @item = Item.find(params[:item_id])
 end
