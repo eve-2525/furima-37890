@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー新規登録' do
     context '新規登録できるとき' do
-      it 'nicknameとemail、passwordとpassword_confiramation,last_name,first_name,last_name_kana,first_name_kana,birthdayが存在すれば登録できる' do
+      it 'nicknameとemail、passwordとencrypted_password,last_name,first_name,last_name_kana,first_name_kana,birthdayが存在すれば登録できる' do
         expect(@user).to be_valid
       end
 
@@ -50,8 +50,8 @@ RSpec.describe User, type: :model do
       end
 
       it 'passwordとpassword_confirmationが不一致では登録できない' do
-        @user.password = '123456'
-        @user.password_confirmation = '1234567'
+        @user.password = '12345a'
+        @user.password_confirmation = '123456a'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
@@ -63,15 +63,15 @@ RSpec.describe User, type: :model do
       end
 
       it 'passwordが5文字以下では登録できない' do
-        @user.password = '00000'
-        @user.password_confirmation = '00000'
+        @user.password = '0000a'
+        @user.encrypted_password = '0000a'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
       it 'passwordが129文字以上では登録できない' do
         @user.password = Faker::Internet.password(min_length: 129)
-        @user.password_confirmation = @user.password
+        @user.encrypted_password = @user.password
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too long (maximum is 128 characters)')
       end

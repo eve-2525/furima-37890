@@ -23,6 +23,9 @@ class User < ApplicationRecord
     validates :first_name_kana
   end
 
-  encrypted_password = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
-  validates_format_of :password, with: encrypted_password, message: 'is invalid. Include both letters and numbers'
+  e_password = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: e_password, message: 'is invalid. Include both letters and numbers'
+
 end
+  
+
